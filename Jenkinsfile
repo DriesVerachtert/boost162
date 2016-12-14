@@ -7,8 +7,11 @@ node {
 		checkout scm
 	}
 	stage('PrintEnv') {
-		for (String key: this.binding.variables.keySet()) {
-			println("key: " + key + ", val: " + this.binding.variables.get(key));
+		// workaround: a for each loop doesn't work in Jenkins
+		Set keys = this.binding.variables.keySet();
+		for (int i = 0; i< keys.size(); i++) {
+		  	String key = keys.getAt(i);
+		    println("key: " + key + ", val: " + this.binding.variables.get(key));                             
 		}
 
 		sh 'env | sort'
