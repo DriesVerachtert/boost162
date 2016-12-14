@@ -7,7 +7,9 @@ node {
 		checkout scm
 	}
 	stage('PrintEnv') {
-		this.binding.variables.each {k,v -> println "$k = $v"}
+		for (String key: this.binding.variables.keySet()) {
+			println("key: " + key + ", val: " + this.binding.variables.get(key));
+		}
 
 		sh 'env | sort'
 	}
