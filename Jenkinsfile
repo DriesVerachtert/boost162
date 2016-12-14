@@ -1,19 +1,23 @@
 #!groovy
 
 
+@NonCPS def printEnv(vars) {
+	// workaround: a for each loop doesn't work in Jenkins
+	Set keys = vars.keySet();
+	for (int i = 0; i< keys.size(); i++) {
+	  	String key = keys.getAt(i);
+	    println("key: " + key + ", val: " + vars.get(key));                             
+	}
+
+}
+
 
 node {
 	stage('Checkout') {
 		checkout scm
 	}
 	stage('PrintEnv') {
-		// workaround: a for each loop doesn't work in Jenkins
-		Set keys = this.binding.variables.keySet();
-		for (int i = 0; i< keys.size(); i++) {
-		  	String key = keys.getAt(i);
-		    println("key: " + key + ", val: " + this.binding.variables.get(key));                             
-		}
-
+		printEnv(this.binding.variables)
 		sh 'env | sort'
 	}
 
