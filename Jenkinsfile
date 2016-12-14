@@ -21,10 +21,7 @@ node {
 		sh 'env | sort'
 	}
 
-	stage('CopySources') {
-
-	}
 	stage('BuildUntested') {
-		//sh "sudo /srv/rpmbuild/scripts/run-single-scl-build-from-jenkins.pl "
+		sh "sudo /srv/rpmbuild/scripts/run-single-scl-build-from-jenkins.pl boost162 centos-7-x86_64-scl-untested el7"
 	}
 }
