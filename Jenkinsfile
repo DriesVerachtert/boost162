@@ -22,6 +22,6 @@ node {
 	}
 
 	stage('BuildUntested') {
-		sh "sudo /srv/rpmbuild/scripts/run-single-scl-build-from-jenkins.pl boost162 centos-7-x86_64-scl-untested el7"
+		sh "sudo /srv/rpmbuild/scripts/run-single-scl-build-from-jenkins.pl boost162 centos-7-x86_64-scl-untested el7 dries-scl-boost162-centos-7-x68_64"
 	}
 }
